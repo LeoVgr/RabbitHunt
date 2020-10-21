@@ -1,0 +1,69 @@
+{
+    "RabbitAgent": {
+        "checkpoints": [
+            {
+                "steps": 499877,
+                "file_path": "results\\MyFirstAI\\RabbitAgent\\RabbitAgent-499877.nn",
+                "reward": 1.2870689424975166,
+                "creation_time": 1603287249.3627846
+            },
+            {
+                "steps": 999402,
+                "file_path": "results\\MyFirstAI\\RabbitAgent\\RabbitAgent-999402.nn",
+                "reward": -10.949138799820023,
+                "creation_time": 1603287492.2315454
+            },
+            {
+                "steps": 1499723,
+                "file_path": "results\\MyFirstAI\\RabbitAgent\\RabbitAgent-1499723.nn",
+                "reward": null,
+                "creation_time": 1603287763.1193235
+            },
+            {
+                "steps": 1999461,
+                "file_path": "results\\MyFirstAI\\RabbitAgent\\RabbitAgent-1999461.nn",
+                "reward": -2.037192133259891,
+                "creation_time": 1603287993.6759353
+            },
+            {
+                "steps": 2203227,
+                "file_path": "results\\MyFirstAI\\RabbitAgent\\RabbitAgent-2203227.nn",
+                "reward": -20.0,
+                "creation_time": 1603288094.8115036
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2203227,
+            "file_path": "results\\MyFirstAI\\RabbitAgent.nn",
+            "reward": -20.0,
+            "creation_time": 1603288094.8115036
+        }
+    },
+    "HunterAgent": {
+        "checkpoints": [
+            {
+                "steps": 499946,
+                "file_path": "results\\MyFirstAI\\HunterAgent\\HunterAgent-499946.nn",
+                "reward": -85.22666549682617,
+                "creation_time": 1603287780.6475146
+            },
+            {
+                "steps": 723122,
+                "file_path": "results\\MyFirstAI\\HunterAgent\\HunterAgent-723122.nn",
+                "reward": -60.167692933763774,
+                "creation_time": 1603288095.1495197
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 723122,
+            "file_path": "results\\MyFirstAI\\HunterAgent.nn",
+            "reward": -60.167692933763774,
+            "creation_time": 1603288095.1495197
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.21.0",
+        "tensorflow_version": "2.3.1"
+    }
+}
