@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
     public List<Transform> rabbitsStarts;
     public Transform catchStart;
 
+    public GameObject winParticles;
+
     public void StartNewGame()
     {
         player.transform.position = new Vector3(playerStart.position.x, playerStart.position.y + 0.37f, playerStart.position.z);
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
     {
         rabbit.GetComponent<RabbitAgentLogic>().isCatched = true;
         rabbit.transform.position = catchStart.position;
+        rabbit.GetComponent<AudioSource>().Play(0);
     }
 
     public bool IsWon()
@@ -53,11 +56,13 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-
+        print("Game over");
     }
 
     public void Win()
     {
-
+        winParticles.SetActive(true);
+        GetComponent<AudioSource>().Play(0);
+        print("Win");
     }
 }

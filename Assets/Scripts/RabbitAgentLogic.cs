@@ -83,7 +83,8 @@ public class RabbitAgentLogic : Agent
         if (this.transform.localPosition.y < -1)
         {
             AddReward(-20f);
-            EndEpisode();
+            this.isCatched = true;
+            //EndEpisode();
         }
         else
         {
@@ -95,7 +96,7 @@ public class RabbitAgentLogic : Agent
         if (collision.gameObject == hunter)
         {
             AddReward(-1f);
-            EndEpisode();
+            
         }
     }
 

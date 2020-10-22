@@ -10,10 +10,17 @@ public class PlayerMovement : Agent
     public GameObject floor;
     public GameManager gameManager;
     public GameObject movementParticles;
+    public List<AudioClip> footStepsSound;
 
     private Rigidbody rBody;   
     private Vector3 forward, right;
     private Vector3 lastHeading;
+    private int nextFootStep = 0;
+    private bool isPlayingFootStep = false;
+    private float timer = 0;
+    private float timeBetweenFootStep = 0.2f;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +34,12 @@ public class PlayerMovement : Agent
         right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
         lastHeading = new Vector3();
 
+    }
+
+    private void Update()
+    {
+        timer += Time.deltaTime;
+        FootStep();
     }
 
     public override void OnEpisodeBegin()
@@ -92,9 +105,13 @@ public class PlayerMovement : Agent
             transform.forward = heading;
             lastHeading = heading;
             movementParticles.SetActive(true);
+
+            isPlayingFootStep = true;
+            
         }
         else
         {
+            isPlayingFootStep = false;
             movementParticles.SetActive(false);
             transform.forward = lastHeading;
         }
@@ -104,11 +121,12 @@ public class PlayerMovement : Agent
         transform.position += upMovment;
        
 
-        ////// Fell of platform
+        // Fell of platform
         if (this.transform.localPosition.y < -1)
         {
             AddReward(-20f);
-            EndEpisode();
+            gameManager.GameOver();
+            //EndEpisode();
          
         }
         
@@ -124,7 +142,11 @@ public class PlayerMovement : Agent
             }
 
             if (gameManager.IsWon())
-                EndEpisode();
+            {
+                gameManager.Win();
+                //EndEpisode();
+            }
+                
             
         }
     }
@@ -133,5 +155,24 @@ public class PlayerMovement : Agent
     {
         actionsOut[0] = -Input.GetAxis("Horizontal");
         actionsOut[1] = -Input.GetAxis("Vertical");
+    }
+
+    private void FootStep()
+    {
+        if (!isPlayingFootStep)
+            GetComponent<AudioSource>().Stop();
+
+        if (isPlayingFootStep && timer >= timeBetweenFootStep)
+        {
+            GetComponent<AudioSource>().clip = footStepsSound[nextFootStep];
+            GetComponent<AudioSource>().Play();
+
+            nextFootStep++;
+
+            if (nextFootStep == footStepsSound.Count)
+                nextFootStep = 0;
+
+            timer = 0;
+        }
     }
 }
